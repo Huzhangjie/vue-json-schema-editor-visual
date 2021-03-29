@@ -181,35 +181,43 @@
         v-if="showRaw"
         :visible.sync="rawDialogVisible"
         :schema="schemaData"
+        append-to-body
       />
       <!-- 高级设置弹窗 -->
       <BasicDialog
         :visible.sync="basicDialogVisible"
         :init-data="basicModalData"
+        append-to-body
       />
       <StringDialog
         :visible.sync="settingDialogVisible.string"
         :init-data="settingModalData"
+        append-to-body
       />
       <NumberDialog
         :visible.sync="settingDialogVisible.number"
         :init-data="settingModalData"
+        append-to-body
       />
       <NumberDialog
         :visible.sync="settingDialogVisible.integer"
         :init-data="settingModalData"
+        append-to-body
       />
       <ArrayDialog
         :visible.sync="settingDialogVisible.array"
         :init-data="settingModalData"
+        append-to-body
       />
       <BooleanDialog
         :visible.sync="settingDialogVisible.boolean"
         :init-data="settingModalData"
+        append-to-body
       />
       <ObjectDialog
         :visible.sync="settingDialogVisible.object"
         :init-data="settingModalData"
+        append-to-body
       />
     </div>
   </div>
