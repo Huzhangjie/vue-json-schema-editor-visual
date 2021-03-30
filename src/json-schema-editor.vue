@@ -362,34 +362,9 @@ export default {
     enableRequireAction(opts) {
       const { prefix, name, required } = opts
       const prefixCopy = cloneDeep(prefix)
-      prefixCopy.pop()
       const parentKeys = [...prefixCopy]
-      const parentPrefix = parentKeys.join(JSONPATH_JOIN_CHAR)
       const cloneSchema = cloneDeep(this.schemaData)
-      let parentData = null
-      if (!parentPrefix) {
-        // 一级属性
-        parentData = cloneSchema
-      } else {
-        parentData = get(cloneSchema, parentPrefix)
-      }
-      const requiredData = [].concat(parentData.required || [])
-      const index = requiredData.indexOf(name)
-      // 取消必填
-      if (!required && index >= 0) {
-        requiredData.splice(index, 1)
-        parentKeys.push('required')
-        if (requiredData.length === 0) {
-          deleteData(cloneSchema, parentKeys)
-        } else {
-          set(cloneSchema, parentKeys, requiredData)
-        }
-      } else if (required && index === -1) {
-        // 必填
-        requiredData.push(name)
-        parentKeys.push('required')
-        set(cloneSchema, parentKeys, requiredData)
-      }
+      set(cloneSchema, [...parentKeys, name, 'required'], required)
       this.forceUpdate(cloneSchema)
       this.handleEmitChange(cloneSchema)
     },

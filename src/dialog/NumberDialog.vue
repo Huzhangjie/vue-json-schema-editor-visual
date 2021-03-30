@@ -29,9 +29,9 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="最小值：" prop="minLength">
+            <el-form-item label="最小值：" prop="minimum">
               <el-input-number
-                v-model="formData.minLength"
+                v-model="formData.minimum"
                 style="width: 160px"
                 placeholder="请输入"
                 :min="-9007199254740992"
@@ -40,9 +40,9 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="最大值:" prop="maxLength">
+            <el-form-item label="最大值:" prop="maximum">
               <el-input-number
-                v-model="formData.maxLength"
+                v-model="formData.maximum"
                 style="width: 160px"
                 placeholder="请输入"
                 :step="1"
@@ -106,15 +106,15 @@ export default {
       enableEnum: false,
       formData: {
         default: undefined,
-        minLength: undefined,
-        maxLength: undefined,
+        minimum: undefined,
+        maximum: undefined,
         enum: undefined,
         enumDesc: undefined,
       },
       rules: {
         default: [],
-        minLength: [],
-        maxLength: [],
+        minimum: [],
+        maximum: [],
         innerScope: [],
         enum: [],
         enumDesc: [],
@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     onOpen() {
-      const { minLength, maxLength, enumDesc } = this.initData
+      const { minimum, maximum, enumDesc } = this.initData
       let enumValue = this.initData.enum
       if (enumValue) {
         try {
@@ -136,7 +136,7 @@ export default {
       }
       Object.assign(
         this.formData,
-        { minLength, maxLength, enumDesc },
+        { minimum, maximum, enumDesc },
         { default: this.initData.default, enum: enumValue }
       )
     },
